@@ -48,8 +48,6 @@ defmodule Google.Calendar.Event do
     datetime
   end
 
-  @spec_reson
-
   @spec insert!(Calendar.client(), String.t(), t()) :: t()
   def insert!(client, calendar_id, event) do
     client
@@ -90,7 +88,7 @@ defmodule Google.Calendar.Event do
       |> then(& &1.body)
 
     {millis, rest} = Integer.parse(json["expiration"])
-    dt =DateTime.from_unix!(millis, :milliseconds)
+    dt = DateTime.from_unix!(millis, :milliseconds)
 
     %Channel{
       id: json["id"],
