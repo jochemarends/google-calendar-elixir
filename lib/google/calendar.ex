@@ -3,16 +3,16 @@ defmodule Google.Calendar do
   Documentation for `Google.Calendar`.
   """
 
-  @doc """
-  Hello world.
+  @base_url "https://www.googleapis.com/calendar/v3/"
 
-  ## Examples
+  @type client :: Req.Request.t()
 
-      iex> Google.Calendar.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  @spec client(String.t()) :: client()
+  def client(token) do
+    headers = %{
+      "Authorization" => "Bearer #{token}",
+      "Accept" => "application/json"
+    }
+    Req.new(base_url: @base_url, headers: headers)
   end
 end
